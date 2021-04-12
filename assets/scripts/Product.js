@@ -67,7 +67,7 @@ class Product {
                         <p class="text-bold margin-0"><span>$</span>${this.price}</p>
                     </div>
                     <div>
-                        <p class="margin-0">${this.imageUrl}</p>
+                        <a href="${this.imageUrl}" class="margin-0">${this.imageUrl}</a>
                     </div>
 
                     <div class="no-paddings flex margin-y-8">
