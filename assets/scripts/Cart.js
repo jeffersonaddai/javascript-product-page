@@ -7,41 +7,51 @@ class Cart {
     }
 
     addToCart(product){
-        // Check if the order of tha product already exists
+    
+        if (product._stock > 0){
+               // Check if the order of tha product already exists
         const order = cart.findOrder(product._id)
+        const orderQuantity = parseInt(document.querySelector(`#${product._id}quantity`).value);
         // If it doesnt exist
         if (order == null){
             // create a new order
             let order = new Order(product._id);
-            order.items = [{productId: product._id, unitPrice: product.price, productName: product.productName, quantity: document.querySelector(`#${product._id}quantity`).value}]
+            order.items = [{productId: product._id, unitPrice: product.price, productName: product.productName, quantity: orderQuantity }]
             this._orders.push(order);
         }
         else{
             order.items.push({
                 productId: product._id, 
-                unitPrice: product.price, 
-                productName: product.productName, 
-                quantity: document.querySelector(`#${product._id}quantity`).value
+                unitPrice: product._price, 
+                productName: product._productName, 
+                quantity: orderQuantity
             })
             // if it exists just update the quantity
             // order.items.quantity = document.querySelector(`#${product._id}quantity`).value
         }
-
         this.calculateTotal();
-
+        product._stock -= orderQuantity;
         this.displayNumberOfProductsInCart();
+        }else{
+            alert("Sorry prodouct out of stock")
+        }
+     
     }
     
-    removeFromCart(productId){
+    removeFromCart(product){
         //If product exists
         //remove product from cart
-        if (this.findOrder(productId) !== null){
+        const order = this.findOrder(product._id)
+        if (order !== null){
             this._orders = this._orders.filter(orderInCart =>{
-                return orderInCart.items[0].productId !== productId;
+                return orderInCart.items[0].productId !== product._id;
             })
             this.displayNumberOfProductsInCart()
             this.calculateTotal();
+            
+            product._stock += order.numberOfQuantities();
         }
+
     }
     findOrder(productId){
         //loop through the orders array
@@ -57,12 +67,11 @@ class Cart {
     displayNumberOfProductsInCart(){
         document.querySelector('#numberOfProductsIncart').innerText = this._orders.length;
     }
+
     calculateTotal(){
         let total = 0;
         for (const order of this._orders){
-            for(const item of order.items){
-                total += parseInt(item.quantity) * parseInt(item.unitPrice);
-            }
+            total += order.calculateTotalPrice();
         }
         this._totalPrice = total;
     }

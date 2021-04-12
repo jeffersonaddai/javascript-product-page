@@ -23,10 +23,6 @@ class Product {
         return this._price;
     }
 
-    get stock() {
-        return this._stock;
-    }
-
     get imageUrl() {
         return this._imageUrl;
     }
@@ -47,31 +43,31 @@ class Product {
                 <div class="productArea">
                     <div class="slides-container relative">
                         <div class="slides float-right">
-                            <img class="w-full" src=${this.imageUrl} alt="">
+                            <img class="w-full" src=${this._imageUrl} alt="">
                         </div>
                     </div>
                 </div>
                 <div class="orderDetails">
                     <div>
-                        <h1 class="text-navy-blue margin-0">${this.productName}</h1>
+                        <h1 class="text-navy-blue margin-0">${this._productName}</h1>
                     </div>
                     <div>
                         <div class="paddings uppercase text-dark-pink">
                             <p class="text-normal margin-0">Description: </p>
                         </div>
                         <p class="text-normal text-dark-grey margin-0">
-                            ${this.description}
+                            ${this._description}
                         </p>
                     </div>
                     <div>
-                        <p class="text-bold margin-0"><span>$</span>${this.price}</p>
+                        <p class="text-bold margin-0"><span>$</span>${this._price}</p>
                     </div>
                     <div>
-                        <a href="${this.imageUrl}" class="margin-0">${this.imageUrl}</a>
+                        <a href="${this._imageUrl}" class="margin-0">Image Url - Click to view image</a>
                     </div>
 
                     <div class="no-paddings flex margin-y-8">
-                        <li class="paddings">${this.stock}</li>
+                        <li id="${this._id}stock"class="paddings">${this._stock}</li>
                         <li class="paddings"> in stock</li>
                     </div>
                     <div>

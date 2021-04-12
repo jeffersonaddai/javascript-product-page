@@ -2,7 +2,7 @@
 let largeGrid = document.createElement('div');
 largeGrid.className = 'products-grid';
 //Add product elements to grid
-for (const product of products){
+for (const product of products) {
     largeGrid.insertAdjacentElement('afterbegin', product.renderProduct());
 }
 
@@ -15,35 +15,40 @@ cart = new Cart();
 // To do that loop through the products in the cart
 // Insert cart item to main
 document.querySelector('#main').insertAdjacentElement('beforeend', cart.renderCart());
-for (const product of products){
-    product.addToCartButton.addEventListener('click', () =>{
+for (const product of products) {
+    product.addToCartButton.addEventListener('click', () => {
         const order = cart.findOrder(product._id)
-        if (order == null){
+        if (order == null) {
             cart.addToCart(product);
             document.querySelector('#cart').lastElementChild.insertAdjacentHTML('beforebegin', cart.renderCartItem());
-        }else{
+        } else {
             cart.addToCart(product);
             document.querySelector(`#${order._id}cartItem`)
-            .lastElementChild.querySelector('span').innerText = parseInt(order.items[order.items.length - 1].quantity) + parseInt(document.querySelector(`#${order._id}cartItem`)
-            .lastElementChild.querySelector('span').innerText);
+                .lastElementChild.querySelector('span').innerText = parseInt(order.items[order.items.length - 1].quantity) + parseInt(document.querySelector(`#${order._id}cartItem`)
+                    .lastElementChild.querySelector('span').innerText);
         }
         // Update the total price
-        document.querySelector('#cartTotal').innerText = cart._totalPrice;
+        updateTotalPrice();
+        updateStock(product);
     })
-    document.querySelector(`#${product._id}removeBtn`).addEventListener('click', () =>{
-        try{
+    document.querySelector(`#${product._id}removeBtn`).addEventListener('click', () => {
+        try {
             document.querySelector(`#${cart.findOrder(product._id)._id}cartItem`).remove();
-        }catch{
+        } catch {
             alert("Item is not in cart");
         }
-        cart.removeFromCart(product._id);
-        document.querySelector('#cartTotal').innerText = cart._totalPrice;
+        cart.removeFromCart(product);
+        updateTotalPrice();
+        updateStock(product);
     });
 
 
 }
 
-function updateTotalPrice(cartText){
-    document.querySelector('#cartTotal').innerText = cartText._totalPrice;
+function updateTotalPrice(cartText) {
+    document.querySelector('#cartTotal').innerText = cart._totalPrice;
+}
+function updateStock(product) {
+    document.querySelector(`#${product._id}stock`).innerText = product._stock;
 }
 
