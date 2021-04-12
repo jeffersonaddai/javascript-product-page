@@ -65,7 +65,7 @@ class Product {
             <div class="description">
               <p>${this._description}</p>
             </div>
-            <span class="stock"><i class="fa fa-pen"></i> <span id="${this._id}stock">${this._stock}</span>In stock</span>
+            <span class="stock"><i class="fa fa-pen"></i> <span class="stockValue" id="${this._id}stock">${this._stock}</span> In stock</span>
             <div>
             <input id="${this._id}quantity" type="number" value=1 min="1">
             </div>

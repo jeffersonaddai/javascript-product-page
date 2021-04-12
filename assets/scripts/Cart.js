@@ -7,32 +7,34 @@ class Cart {
     }
 
     addToCart(product){
-    
-        if (product._stock > 0){
+        const orderQuantity = parseInt(document.querySelector(`#${product._id}quantity`).value);
+
+        if (product._stock > 0 && orderQuantity < product._stock){
                // Check if the order of tha product already exists
         const order = cart.findOrder(product._id)
-        const orderQuantity = parseInt(document.querySelector(`#${product._id}quantity`).value);
         // If it doesnt exist
-        if (order == null){
-            // create a new order
-            let order = new Order(product._id);
-            order.items = [{productId: product._id, unitPrice: product.price, productName: product.productName, quantity: orderQuantity }]
-            this._orders.push(order);
+            if (order == null){
+                // create a new order
+                let order = new Order(product._id);
+                order.items = [{productId: product._id, unitPrice: product.price, productName: product.productName, quantity: orderQuantity }]
+                this._orders.push(order);
+            }
+            else{
+                order.items.push({
+                    productId: product._id, 
+                    unitPrice: product._price, 
+                    productName: product._productName, 
+                    quantity: orderQuantity
+                })
+                // if it exists just update the quantity
+                // order.items.quantity = document.querySelector(`#${product._id}quantity`).value
+
+            }
+            this.calculateTotal();
+            product._stock -= orderQuantity;
+            this.displayNumberOfProductsInCart();
         }
         else{
-            order.items.push({
-                productId: product._id, 
-                unitPrice: product._price, 
-                productName: product._productName, 
-                quantity: orderQuantity
-            })
-            // if it exists just update the quantity
-            // order.items.quantity = document.querySelector(`#${product._id}quantity`).value
-        }
-        this.calculateTotal();
-        product._stock -= orderQuantity;
-        this.displayNumberOfProductsInCart();
-        }else{
             alert("Sorry prodouct out of stock")
         }
      
