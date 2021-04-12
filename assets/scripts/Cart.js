@@ -13,34 +13,40 @@ class Cart {
         if (order == null){
             // create a new order
             let order = new Order(product._id);
-            order.item = {productId: product._id, unitPrice: product.price, productName: product.productName, quantity: document.querySelector(`#${product._id}quantity`).value}
+            order.items = [{productId: product._id, unitPrice: product.price, productName: product.productName, quantity: document.querySelector(`#${product._id}quantity`).value}]
             this._orders.push(order);
-        }else{
+        }
+        else{
+            order.items.push({
+                productId: product._id, 
+                unitPrice: product.price, 
+                productName: product.productName, 
+                quantity: document.querySelector(`#${product._id}quantity`).value
+            })
             // if it exists just update the quantity
-            order.item.quantity = document.querySelector(`#${product._id}quantity`).value
+            // order.items.quantity = document.querySelector(`#${product._id}quantity`).value
         }
-        for (const order of this._orders){
-            this.totalPrice += parseInt(order.item.quantity) * order.item.price;
-        }
+
+        this.calculateTotal();
+
         this.displayNumberOfProductsInCart();
     }
+    
     removeFromCart(productId){
         //If product exists
         //remove product from cart
         if (this.findOrder(productId) !== null){
             this._orders = this._orders.filter(orderInCart =>{
-                return orderInCart.item.productId !== productId;
+                return orderInCart.items[0].productId !== productId;
             })
             this.displayNumberOfProductsInCart()
-            return true;
+            this.calculateTotal();
         }
-        else return false;
-
     }
     findOrder(productId){
         //loop through the orders array
         for(const order of this._orders){
-            if (order.item.productId === productId){
+            if (order.items[0].productId === productId){
                 return order;
             }
         }
@@ -51,6 +57,15 @@ class Cart {
     displayNumberOfProductsInCart(){
         document.querySelector('#numberOfProductsIncart').innerText = this._orders.length;
     }
+    calculateTotal(){
+        let total = 0;
+        for (const order of this._orders){
+            for(const item of order.items){
+                total += parseInt(item.quantity) * parseInt(item.unitPrice);
+            }
+        }
+        this._totalPrice = total;
+    }
     renderCart(){
         let cart = document.createElement('div');
         cart.id = 'cart'
@@ -59,7 +74,7 @@ class Cart {
         <ul id="cartItems" class="cd-cart-items">
         </ul>
         <div class="cd-cart-total">
-        <p>Total: <span>$</span> <span>${this._totalPrice}</span></p>
+        <p>Total: <span>$</span> <span id="cartTotal">${this._totalPrice}</span></p>
         </div> 
         `;
         return cart
@@ -70,12 +85,13 @@ class Cart {
             cartItem.innerHTML = `
 
                 <li id="${order._id}cartItem">
-                    <div class="text-dark-grey text-bold"><span>${order.item.productName}</span></div>
-                    <div class="cd-price">Price: <span>$</span><span>${order.item.unitPrice}</span></div>
-                    <div class="cd-price">Quantity: <span>${order.item.quantity}</span></div>
+                    <div class="text-dark-grey text-bold"><span>${order.items[0].productName}</span></div>
+                    <div class="cd-price">Price: <span>$</span><span>${order.items[0].unitPrice}</span></div>
+                    <div class="cd-price">Quantity: <span>${order.items[0].quantity}</span></div>
                 </li>`
         }
         // Add event listeners to products remove from cart button
         return cartItem.innerHTML;
     }
+
 }

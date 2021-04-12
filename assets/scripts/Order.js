@@ -1,7 +1,7 @@
 class Order {
     _id;
-    // An object of the order
-    item;
+    // An array of items in a particular order
+    items = [];
     constructor(id){
         this._id = id;
     }

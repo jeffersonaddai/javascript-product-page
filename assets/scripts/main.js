@@ -3,18 +3,18 @@ let largeGrid = document.createElement('div');
 largeGrid.className = 'products-grid';
 //Add product elements to grid
 for (const product of products){
-    largeGrid.insertAdjacentElement('afterbegin', product.createHtmlElements());
+    largeGrid.insertAdjacentElement('afterbegin', product.renderProduct());
 }
 
 //Add grid to the main
 document.querySelector('#main').append(largeGrid);
-// add a shadow layer
-document.querySelector('#main').insertAdjacentHTML('beforeend', "<div id='cd-shadow-layer'></div>")
+
 // create a cart
 cart = new Cart();
-// Add cart html to main
 // Add event listeners to product's add to cart button and remove button
-// loop through the products in the cart
+// To do that loop through the products in the cart
+// Insert cart item to main
+document.querySelector('#main').insertAdjacentElement('beforeend', cart.renderCart());
 for (const product of products){
     product.addToCartButton.addEventListener('click', () =>{
         const order = cart.findOrder(product._id)
@@ -24,9 +24,11 @@ for (const product of products){
         }else{
             cart.addToCart(product);
             document.querySelector(`#${order._id}cartItem`)
-            .lastElementChild.querySelector('span').innerText = parseInt(order.item.quantity) + parseInt(document.querySelector(`#${order._id}cartItem`)
+            .lastElementChild.querySelector('span').innerText = parseInt(order.items[order.items.length - 1].quantity) + parseInt(document.querySelector(`#${order._id}cartItem`)
             .lastElementChild.querySelector('span').innerText);
         }
+        // Update the total price
+        document.querySelector('#cartTotal').innerText = cart._totalPrice;
     })
     document.querySelector(`#${product._id}removeBtn`).addEventListener('click', () =>{
         try{
@@ -35,9 +37,13 @@ for (const product of products){
             alert("Item is not in cart");
         }
         cart.removeFromCart(product._id);
+        document.querySelector('#cartTotal').innerText = cart._totalPrice;
     });
+
+
 }
 
-// Insert cart item to main
+function updateTotalPrice(cartText){
+    document.querySelector('#cartTotal').innerText = cartText._totalPrice;
+}
 
-document.querySelector('#main').insertAdjacentElement('beforeend', cart.renderCart())

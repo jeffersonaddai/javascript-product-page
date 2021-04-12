@@ -40,7 +40,7 @@ class Product {
     set htmlTemplate(html) {
         this._htmlTemplate = html;
     }
-    createHtmlElements(){
+    renderProduct(){
         let element = document.createElement('div');
         element.className = 'grid-2';
         element.innerHTML =  `
@@ -84,6 +84,7 @@ class Product {
                     <p class="margin-0 center-text text-xl text-bold">REMOVE FROM CART</p>
                 </div>
                 </div>`
+        
         return element;
     }
     get addToCartButton(){
