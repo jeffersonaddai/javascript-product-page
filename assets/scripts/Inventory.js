@@ -1,6 +1,6 @@
 //Create products
 let product1 = new Product(
-    'Almond Toe Shoes',
+    'Toe Shoes',
     99,
     10,
     'assets/img/toe-shoes.jpg',
@@ -20,7 +20,7 @@ let product3 = new Product(
     34.00,
     15,
     'assets/img/flip-flop.jpg',
-    'A PVC thong strap and comfortable footbed with printed branding.',
+    'A PVC thong strap and comfortable footbed with printed branding. Very comfortable',
     'product3'
 )
 let product4 = new Product(

@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     height: 100%;
-    width: 260px;
+    width: 200px;
     /* header height */
     padding-top: 50px;
     overflow-y: auto;
@@ -56,7 +56,6 @@
     right: 1em;
     top: 50%;
     bottom: auto;
-    width: 100px;
     height: 32px;
   }
   .no-touch #cart .cd-item-remove:hover {
