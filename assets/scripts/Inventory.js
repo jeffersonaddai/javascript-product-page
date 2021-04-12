@@ -12,7 +12,7 @@ let product2 = new Product(
     42,
     5,
     'assets/img/suede-shoes.jpg',
-    'Stylish black man\'s crafted shoes made of genuine leather and suede on the wooden background.',
+    'Stylish black man\'s crafted shoes made of genuine leather and suede on the wooden background. High quality leather black.',
     'product2'
 )
 let product3 = new Product(
@@ -20,7 +20,7 @@ let product3 = new Product(
     34.00,
     15,
     'assets/img/flip-flop.jpg',
-    'A PVC thong strap and comfortable footbed with printed branding, these flip-flops are totally beach-ready.',
+    'A PVC thong strap and comfortable footbed with printed branding.',
     'product3'
 )
 let product4 = new Product(
@@ -28,7 +28,7 @@ let product4 = new Product(
     104.00,
     8,
     'assets/img/cutton-short.jpg',
-    "The Hoff Shorts are the shorts you'll be living in all year long. Relaxed and comfy.",
+    "The Hoff Shorts are the shorts you'll be living in all year long. Really comfortable.",
     'product4'
 )
 

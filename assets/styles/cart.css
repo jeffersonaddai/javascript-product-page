@@ -1,0 +1,137 @@
+
+
+  
+  #cart {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 260px;
+    /* header height */
+    padding-top: 50px;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+  }
+
+  
+  #cart {
+    right: 0;
+    background: #FFF;
+    -webkit-transition: right 0.3s;
+    -moz-transition: right 0.3s;
+    transition: right 0.3s;
+  }
+  #cart.speed-in {
+    right: 0;
+  }
+  #cart > * {
+    padding: 0 1em;
+  }
+  #cart h2 {
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 1em 0;
+  }
+  #cart .cart-items {
+    padding: 0;
+  }
+  #cart .cart-items li {
+    position: relative;
+    padding: 1em;
+    border-top: 1px solid #e0e6ef;
+  }
+  #cart .cart-items li:last-child {
+    border-bottom: 1px solid #e0e6ef;
+  }
+  #cart .cd-qty, #cart .cd-price {
+    color: #a5aebc;
+  }
+  #cart .cd-price {
+    margin-top: .4em;
+  }
+  #cart .cd-item-remove {
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    bottom: auto;
+    width: 100px;
+    height: 32px;
+  }
+  .no-touch #cart .cd-item-remove:hover {
+    background-color: #e0e6ef;
+  }
+  #cart .cart-total {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  #cart .cart-total span {
+    float: right;
+  }
+  #cart .cart-total::after {
+    /* clearfix */
+    content: '';
+    display: table;
+    clear: both;
+  }
+ 
+  .no-touch #cart .checkout-btn:hover {
+    background: #a2dda8;
+  }
+  #cart .cd-go-to-cart {
+    text-align: center;
+    margin: 1em 0;
+  }
+  #cart .cd-go-to-cart a {
+    text-decoration: underline;
+  }
+  @media only screen and (min-width: 1200px) {
+    #cart > * {
+      padding: 0 2em;
+    }
+    #cart .cart-items li {
+      padding: 1em 2em;
+    }
+    #cart .cd-item-remove {
+      right: 2em;
+    }
+  }
+
+
+
+
+  
+  /* -------------------------------- 
+  
+  xkeyframes 
+  
+  -------------------------------- */
+  @-webkit-keyframes cd-fade-in {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes cd-fade-in {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes cd-fade-in {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  

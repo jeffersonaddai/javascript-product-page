@@ -1,12 +1,10 @@
-#next{
+#cart-btn{
   height:60px;
   max-width: 30%;
   margin-right: auto;
   margin-left: auto;
 }
-#next:hover{
-  background-color: #20acc5;
-}
+
 
 
 .grid-2{
@@ -17,8 +15,8 @@
     column-gap: 30px;
 }
 .products-grid{
-    width: 90%;
-    margin: 0px auto;
+    width: 75%;
+    margin-left: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }

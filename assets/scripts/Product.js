@@ -74,12 +74,15 @@ class Product {
                         <li class="paddings">${this.stock}</li>
                         <li class="paddings"> in stock</li>
                     </div>
+                    <div>
+                        <input id="${this._id}quantity" type="number" value=1 min="1">
+                    </div>
                     <div id = '${this._id}addBtn' class="button pointer vertical-center bg-navy-blue text-white margin-top-25">
                         <p class="margin-0 center-text text-xl text-bold">ADD TO CART</p>
                     </div>
                     <div id = '${this._id}removeBtn' class="pointer vertical-center bg-navy-blue text-white margin-top-25">
-                        <p class="margin-0 center-text text-xl text-bold">REMOVE FROM CART</p>
-                    </div>
+                    <p class="margin-0 center-text text-xl text-bold">REMOVE FROM CART</p>
+                </div>
                 </div>`
         return element;
     }
