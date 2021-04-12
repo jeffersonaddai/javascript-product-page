@@ -1,0 +1,55 @@
+#next{
+  height:60px;
+  max-width: 30%;
+  margin-right: auto;
+  margin-left: auto;
+}
+#next:hover{
+  background-color: #20acc5;
+}
+
+
+.grid-2{
+    width: 100%;
+    display: grid;
+    margin: 15px auto;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+}
+.products-grid{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+
+.button{
+    height: 40px;
+}
+
+
+@media only screen and (max-width: 1286px){
+    .w-88{
+        width:100%;
+    }
+    .grid-2{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 830px){
+    .grid-2{
+        grid-template-columns: 1fr;
+    }
+    .thumbnails{
+        display: none;
+    }
+    .orderDetails div{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+    .dropdown > span{
+        background: none;
+    }
+}
