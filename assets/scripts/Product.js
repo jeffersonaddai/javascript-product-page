@@ -71,8 +71,8 @@ class Product {
                     </div>
 
                     <div class="no-paddings flex margin-y-8">
-                        <span>${this.stock}</span>
-                        <p class="margin-0"> In stock</p>
+                        <li class="paddings">${this.stock}</li>
+                        <li class="paddings"> in stock</li>
                     </div>
                     <div id = '${this._id}addBtn' class="button pointer vertical-center bg-navy-blue text-white margin-top-25">
                         <p class="margin-0 center-text text-xl text-bold">ADD TO CART</p>

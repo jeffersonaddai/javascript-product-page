@@ -7,7 +7,7 @@ class Cart {
 
     addToCart(product){
         this._products.push(product);
-        this.setNumberOfProductsInCart();
+        this.displayNumberOfProductsInCart();
     }
     removeFromCart(productName){
         //If product exists
@@ -31,7 +31,16 @@ class Cart {
         }
         return null;
     }
-    setNumberOfProductsInCart(){
+    displayNumberOfProductsInCart(){
         document.querySelector('#numberOfProductsIncart').innerText = this._products.length;
+    }
+    createHtmlElements(){
+        const element = document.createElement("div");
+        element.innerHTML = `
+            <div id="next" class="pointer border-navy-blue text-bold margin-top-25 bg-white text-navy-blue vertical-center">
+                CART (<span id="numberOfProductsIncart">0</span>)
+            </div>
+            `
+        return element.firstElementChild
     }
 }
