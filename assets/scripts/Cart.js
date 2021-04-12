@@ -16,7 +16,7 @@ class Cart {
             this._products = this._products.filter(productInCart =>{
                 return productInCart.productName !== productName;
             })
-            this.setNumberOfProductsInCart()
+            this.displayNumberOfProductsInCart()
             return true;
         }
         else return false;
