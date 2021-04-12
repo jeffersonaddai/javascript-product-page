@@ -9,7 +9,7 @@ class Cart {
     addToCart(product){
         const orderQuantity = parseInt(document.querySelector(`#${product._id}quantity`).value);
 
-        if (product._stock > 0 && orderQuantity < product._stock){
+        if (product._stock > 0 && orderQuantity <= product._stock){
                // Check if the order of tha product already exists
         const order = cart.findOrder(product._id)
         // If it doesnt exist

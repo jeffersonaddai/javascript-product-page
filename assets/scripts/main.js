@@ -19,7 +19,7 @@ for (const product of products) {
     product.addToCartButton.addEventListener('click', () => {
         const orderQuantity = parseInt(document.querySelector(`#${product._id}quantity`).value);
 
-        if (product._stock > 0 && orderQuantity < product._stock){
+        if (product._stock > 0 && orderQuantity <= product._stock){
             const order = cart.findOrder(product._id)
             if (order == null) {
                 cart.addToCart(product);
